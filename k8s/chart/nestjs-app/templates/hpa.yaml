@@ -2,7 +2,7 @@
 nestjs:
   replicaCount: 1
   image: 
-    repository: leanespind92/desafio11
+    repository: leanespind92/desafio12
     tag: latest
     pullPolicy: IfNotPresent
   service: 

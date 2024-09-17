@@ -2,11 +2,11 @@
 nestjs:
   replicaCount: 1
   image: 
-    repository: leanespind92/desafio11
+    repository: leanespind92/desafio12
     tag: latest
     pullPolicy: IfNotPresent
   service: 
-    type: ClusterIP
+    type: ClusterIP # Asegúrate de que este campo esté definido
     port: 3000 
 
 # Configuración de MongoDB
@@ -17,7 +17,7 @@ mongodb:
     tag: latest
     pullPolicy: IfNotPresent
   service:
-    type: ClusterIP
+    type: ClusterIP # Asegúrate de que este campo esté definido
     port: 27017
 
 # Configuración de Ingress
@@ -41,3 +41,4 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 50
+  targetMemoryUtilizationPercentage: 60 # Opcional, si quieres usar memoria como métrica
