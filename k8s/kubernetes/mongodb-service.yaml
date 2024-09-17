@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nestjs
+spec:
+  replicas: {{ .Values.nestjs.replicaCount}}
+  selector:
+    matchLabels:
+      app: nestjs
+  template:
+    metadata:
+      labels:
+        app: nestjs
+    spec:
+      containers:
+      - name: nestjs
+        image: "{{ .Values.nestjs.image.repository }}:{{ .Values.nestjs.image.tag }}"
+        ports:
+        - containerPort: 3000
