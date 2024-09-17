@@ -1,11 +1,19 @@
-apiVersion: v1
-kind: Service
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: mongodb
+  name: nestjs
 spec:
-  type: {{ .Values.mongodb.service.type }}
-  ports:
-  - port: {{ .Values.mongodb.service.port }}
-    targetPort: 27017
+  replicas: {{ .Values.nestjs.replicaCount}}
   selector:
-    app: mongodb
+    matchLabels:
+      app: nestjs
+  template:
+    metadata:
+      labels:
+        app: nestjs
+    spec:
+      containers:
+      - name: nestjs
+        image: "{{ .Values.nestjs.image.repository }}:{{ .Values.nestjs.image.tag }}"
+        ports:
+        - containerPort: 3000
