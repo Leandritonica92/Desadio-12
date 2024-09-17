@@ -1,5 +1,4 @@
-
-  nestjs:
+nestjs:
   replicaCount: 1
   image: 
     repository: leanespind92/desafio11
@@ -18,3 +17,14 @@ mongodb:
   service:
     type: ClusterIP
     port: 27017
+
+ingress:
+  enabled: false
+  name: ""
+  nginxClass: ""
+  path: /
+  pathType: ImplementationSpecific
+  host: ""
+  tls: []
+  extraHosts: []
+  extraPaths: []

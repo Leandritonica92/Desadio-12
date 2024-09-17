@@ -1,34 +1,36 @@
-{{- if .Values.ingress.enabled -}}
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: {{ include "nestjs-app.fullname" . }}
-  annotations:
-    {{- toYaml .Values.ingress.annotations | nindent 4 }}
-spec:
-  rules:
-    {{- range .Values.ingress.hosts }}
-    - host: {{ .host }}
-      http:
-        paths:
-          {{- range .paths }}
-          - path: {{ .path }}
-            pathType: {{ .pathType }}
-            backend:
-              service:
-                name: {{ include "nestjs-app.fullname" . }}
-                port:
-                  number: {{ .port }}
-          {{- end }}
-    {{- end }}
-  {{- if .Values.ingress.tls }}
+# Configuración de la aplicación NestJS
+nestjs:
+  replicaCount: 1
+  image: 
+    repository: leanespind92/desafio11
+    tag: latest
+    pullPolicy: IfNotPresent
+  service: 
+    type: ClusterIP
+    port: 3000 
+
+# Configuración de MongoDB
+mongodb:
+  replicaCount: 1
+  image: 
+    repository: mongo
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 27017
+
+# Configuración de Ingress
+ingress:
+  enabled: false
+  annotations: {}
+  hosts:
+    - host: "example.com"
+      paths:
+        - path: /
+          pathType: Prefix
+          port: 80
   tls:
-    {{- range .Values.ingress.tls }}
     - hosts:
-        {{- range .hosts }}
-        - {{ . }}
-        {{- end }}
-      secretName: {{ .secretName }}
-    {{- end }}
-  {{- end }}
-{{- end }}
+        - "example.com"
+      secretName: "example-tls"
