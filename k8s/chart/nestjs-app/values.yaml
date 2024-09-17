@@ -1,3 +1,4 @@
+# Configuración de la aplicación NestJS
 nestjs:
   replicaCount: 1
   image: 
@@ -8,6 +9,7 @@ nestjs:
     type: ClusterIP
     port: 3000 
 
+# Configuración de MongoDB
 mongodb:
   replicaCount: 1
   image: 
@@ -18,13 +20,24 @@ mongodb:
     type: ClusterIP
     port: 27017
 
+# Configuración de Ingress
 ingress:
   enabled: false
-  name: ""
-  nginxClass: ""
-  path: /
-  pathType: ImplementationSpecific
-  host: ""
-  tls: []
-  extraHosts: []
-  extraPaths: []
+  annotations: {}
+  hosts:
+    - host: "example.com"
+      paths:
+        - path: /
+          pathType: Prefix
+          port: 80
+  tls:
+    - hosts:
+        - "example.com"
+      secretName: "example-tls"
+
+# Configuración de Autoscaling
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
