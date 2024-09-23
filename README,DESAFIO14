@@ -1,0 +1,15 @@
+## Objetivo:
+
+El objetivo de este desafío es poner en práctica el despliegue del Helm Chart desarrollado en
+el desafío #12 utilizando ArgoCD. Se debe automatizar la gestión del despliegue de la
+aplicación y su base de datos MongoDB, siguiendo los principios de GitOps.
+
+## Escenario:
+
+Luego de haber desarrollado el Helm Chart en el desafío anterior para la aplicación y
+MongoDB, el equipo ha decidido implementar una solución de despliegue continuo
+utilizando ArgoCD. Esto permitirá automatizar y gestionar los despliegues de manera
+eficiente, basándose en un repositorio Git.
+El objetivo es desplegar el Helm Chart en el entorno de Kubernetes utilizando ArgoCD,
+permitiendo que cualquier cambio realizado en el repositorio de código sea aplicado
+automáticamente en el clúster de Kubernetes.
