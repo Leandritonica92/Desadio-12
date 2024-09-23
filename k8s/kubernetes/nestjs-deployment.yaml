@@ -14,15 +14,15 @@ spec:
     spec:
       containers:
       - name: nestjs-app
-        image: leanespind92/desafio12:latest
+        image: {{ .Values.nestjs.image }}:{{ .Values.nestjs.tag }}
         ports:
-        - containerPort: 3000
+        - containerPort: {{ .Values.nestjs.port }}
         env:
         - name: MONGO_DB_URI
-          value: "mongodb://mongo:mongo123@mongodb-service:27017"
+          value: {{ .Values.env.MONGO_DB_URI }}
         - name: MONGO_DB_NAME
-          value: "test"
+          value: {{ .Values.env.MONGO_DB_NAME }}
         - name: MONGO_DB_USER
-          value: "mongo"
+          value: {{ .Values.env.MONGO_DB_USER }}
         - name: MONGO_DB_PASS
-          value: "mongo123"
+          value: {{ .Values.env.MONGO_DB_PASS }}

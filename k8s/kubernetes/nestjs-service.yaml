@@ -4,8 +4,8 @@ metadata:
   name: nestjs-service
 spec:
   ports:
-  - port: 3000
-    targetPort: 3000
+  - port: {{ .Values.nestjs.port }}
+    targetPort: {{ .Values.nestjs.port }}
   selector:
     app: nestjs-app
   type: LoadBalancer
