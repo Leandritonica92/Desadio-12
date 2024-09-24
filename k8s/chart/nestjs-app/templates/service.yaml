@@ -1,4 +1,3 @@
-# Source: nestjs-app/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
