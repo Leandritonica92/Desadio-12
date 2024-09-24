@@ -2,18 +2,18 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-nestjs-app-primary-service  # Ensure the service name is unique
+  name: nestjs-service  # Nombre del servicio
   labels:
     helm.sh/chart: nestjs-app-0.1.0
-    app.kubernetes.io/name: my-nestjs-app-primary  # Update to match the new deployment name
-    app.kubernetes.io/instance: my-nestjs-app-primary
+    app.kubernetes.io/name: nestjs-app  # Nombre de la aplicación
+    app.kubernetes.io/instance: nestjs-app
     app.kubernetes.io/part-of: nestjs-app
 spec:
-  type: ClusterIP
+  type: LoadBalancer  # Tipo de servicio
   ports:
-    - port: 80
-      targetPort: http
+    - port: {{ .Values.service.port }}  # Usar el puerto definido en values.yaml
+      targetPort: {{ .Values.nestjs.port }}  # Asegúrate de que coincida con el puerto de tu contenedor
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: my-nestjs-app-primary  # Match with the deployment
+    app.kubernetes.io/name: nestjs-app  # Debe coincidir con el deployment
