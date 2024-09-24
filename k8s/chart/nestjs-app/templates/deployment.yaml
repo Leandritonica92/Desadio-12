@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nestjs-app  # Cambiado a un nombre consistente
+  name: nestjs-app  # Nombre consistente
 spec:
-  replicas: {{ .Values.nestjs.replicaCount | default 1 }}  # Puedes definir un valor por defecto
+  replicas: 1  # Asegúrate de que haya solo un pod
   selector:
     matchLabels:
       app: nestjs-app  # Coincidir con el nuevo nombre del deployment
